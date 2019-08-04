@@ -1,19 +1,22 @@
 {% extends 'base.html' %} {% block content %}
-<h3>Add Task</h3>
+
+<div class="container">
+  <h3>Add Term</h3>
     <div class="row">
       <form class="col s12">
         <div class="row">
-          <div class="input-field col s6">
-            <input id="input_text" type="text" data-length="10">
-            <label for="input_text">Input text</label>
+          <div class="input-field col s12">
+            <input id="term_name" name="term_name" type="text" data-length="15">
+            <label for="term_name">Input Term, Phrase or Idea</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
-            <label for="textarea2">Textarea</label>
+            <textarea id="term_definition" name="term_definition" class="materialize-textarea" data-length="120"></textarea>
+            <label for="term_definition">Input Definition</label>
           </div>
         </div>
       </form>
     </div>
+  </div>
 {% endblock %}
