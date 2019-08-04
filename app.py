@@ -11,8 +11,8 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
 @app.route('/')
-@app.route('/terms')
-def home():
+@app.route('/get_terms')
+def get_terms():
     return render_template("terms.html", terms=mongo.db.terms.find())
 
 
