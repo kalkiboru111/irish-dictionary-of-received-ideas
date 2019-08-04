@@ -1,8 +1,12 @@
 import os
 from flask import Flask
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
+app.config['MONGO_DBNAME'] = 'irish_dictionary'
+app.config['MONGO_URI'] = ''
 
 @app.route('/')
 def hello():
