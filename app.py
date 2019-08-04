@@ -17,6 +17,9 @@ mongo = PyMongo(app)
 def get_terms():
     return render_template("terms.html", terms=mongo.db.terms.find())
 
+@app.route('/add_term')
+def add_term():
+    return render_template("add_term.html")
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
