@@ -1,13 +1,9 @@
-<html>
-    <head>
-
-    </head>
-    <body>
+{% extends 'base.html' %}
+{% block content %}
         {% for term in terms %}
             {{term.term_name}}
             {{term.term_category}}
             {{term.term_definition}}
             {{term.term_origin}}
         {% endfor %}
-    </body>
-</html>
+{% endblock %}
