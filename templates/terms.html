@@ -1,22 +1,23 @@
-{ % extends 'base.html' % } { % block content % } { % for term in terms % } { { term.term_name } } { { term.term_category } } { { term.term_definition } } { { term.term_origin } } { % endfor % }
-<div class="container">
-    <table class="striped centered responsive-table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Item Name</th>
-                <th>Item Price</th>
-            </tr>
-        </thead>
 
+{% extends 'base.html' %}
+{% block content %}
+    <table>
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Item Name</th>
+              <th>Item Price</th>
+          </tr>
+        </thead>
         <tbody>
-            <tr>
-                <td>Alvin</td>
-                <td>Eclair</td>
-                <td>$0.87</td>
-            </tr>
+        {% for term in terms %}
+          <tr>
+            <td>{{term.term_name}}</td>
+            <td>{{term.term_category}}</td>
+            <td>{{term.term_definition}}</td>
+            <td>{{term.term_origin}}</td>
+          </tr>
+         {% endfor %}
         </tbody>
     </table>
-</div>
-
-{ % endblock % }
+{% endblock %}

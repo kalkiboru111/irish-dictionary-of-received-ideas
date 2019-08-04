@@ -11,6 +11,8 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
 @app.route('/')
+
+# View directs user to terms page
 @app.route('/get_terms')
 def get_terms():
     return render_template("terms.html", terms=mongo.db.terms.find())
