@@ -29,7 +29,7 @@ def insert_term():
     terms.insert_one(request.form.to_dict())
     return redirect(url_for('get_terms'))
     
-@app.route('/editterm/<term_id>')
+@app.route('/edit_term/<term_id>')
 def editterm(term_id):
     the_term =  mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     all_categories =  mongo.db.categories.find()

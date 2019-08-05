@@ -5,33 +5,34 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+    <script src="https://kit.fontawesome.com/845efe5847.js"></script>
 </head>
 
 <body>
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="{{url_for('get_terms')}}" class="brand-logo">Irish Dictionary of Received Ideas</a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{url_for('get_terms')}}">Home</a></li>
-                    <li><a href="{{url_for('add_term')}}">Add Term</a></li>
+                <a href="#!" class="brand-logo centered"><i class="fas fa-book-reader"></i>Irish Dictionary of Received Ideas</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+                    <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+                    <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+                    <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
                 </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><a href="{{url_for('get_terms')}}">Home</a></li>
-                    <li><a href="{{url_for('add_term')}}">Add Term</a></li>
-                </ul>
+               
             </div>
         </nav>
     </header>
-<div class="container">
-    {% block content %} {% endblock %}
-</div>
+    <div class="container">
+        {% block content %} {% endblock %}
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript">
         $(document).ready(function() {
-            $('.sidenav').sidenav();
             $('select').formSelect();
+            $('.sidenav').sidenav();
+
         });
     </script>
 
