@@ -28,6 +28,13 @@ def insert_term():
     terms = mongo.db.terms
     terms.insert_one(request.form.to_dict())
     return redirect(url_for('get_terms'))
+    
+@app.route('/editterm/<term_id>')
+def editterm(term_id):
+    the_term =  mongo.db.terms.find_one({"_id": ObjectId(term_id)})
+    all_categories =  mongo.db.categories.find()
+    return render_template('editterm.html', term=the_term,
+                           categories=all_categories)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

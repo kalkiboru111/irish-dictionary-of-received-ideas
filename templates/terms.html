@@ -18,6 +18,7 @@
             <td>{{term.term_category}}</td>
             <td>{{term.term_definition}}</td>
             <td>{{term.term_origin}}</td>
+            <td><a href="{{url_for('editterm', term_id=term._id)}}" class="waves-effect waves-light btn-small">Edit</a></td>
           </tr>
          {% endfor %}
         </tbody>
