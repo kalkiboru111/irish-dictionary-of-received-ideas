@@ -47,6 +47,11 @@ def update_term(term_id):
     })
     return redirect(url_for('get_terms'))
 
+@app.route('/delete_term/<term_id>')
+def delete_term(term_id):
+    mongo.db.terms.remove({"_id": ObjectId(term_id)})
+    return redirect(url_for('get_terms'))
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
