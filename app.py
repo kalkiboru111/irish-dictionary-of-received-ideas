@@ -15,7 +15,8 @@ mongo = PyMongo(app)
 # View directs user to terms page
 @app.route('/get_terms')
 def get_terms():
-    return render_template("terms.html", terms=mongo.db.terms.find())
+    return render_template("terms.html", 
+    terms=mongo.db.terms.find())
 
 @app.route('/add_term')
 def add_term():
