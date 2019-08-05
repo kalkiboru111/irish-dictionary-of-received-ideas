@@ -2,21 +2,41 @@
 
 <div class="container">
   <h3>Add Term</h3>
-    <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="term_name" name="term_name" type="text" data-length="15">
-            <label for="term_name">Input Term, Phrase or Idea</label>
-          </div>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="term_name" name="term_name" type="text" data-length="15">
+          <label for="term_name">Input Term, Phrase or Idea</label>
         </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <textarea id="term_definition" name="term_definition" class="materialize-textarea" data-length="120"></textarea>
-            <label for="term_definition">Input Definition</label>
-          </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="term_definition" name="term_definition" class="materialize-textarea" data-length="120"></textarea>
+          <label for="term_definition">Input Definition</label>
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="term_origin" name="term_origin" class="materialize-textarea" data-length="120"></textarea>
+          <label for="term_origin">Input Origin or Etymology</label>
+        </div>
+      </div>
+<!-- Materialize select not currently functioning correctly. -->      
+ <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">poll</i>
+          <select id="category" name="category_name">
+            <option value="{{cat.category_name}}"disabled selected>{{cat.category_name}}</option>
+            {% for cat in categories %}
+            <option value="1">{{cat in ca</option>
+            {% endfor %}
+          </select>
+          <label>Category</label>
+        </div>
+      </div>
+      
+    </form>
   </div>
+</div>
 {% endblock %}

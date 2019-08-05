@@ -19,7 +19,8 @@ def get_terms():
 
 @app.route('/add_term')
 def add_term():
-    return render_template("add_term.html")
+    return render_template("add_term.html", 
+    categories=mongo.db.categories.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
