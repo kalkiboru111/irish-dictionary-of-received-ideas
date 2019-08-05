@@ -35,6 +35,17 @@ def editterm(term_id):
     all_categories =  mongo.db.categories.find()
     return render_template('editterm.html', term=the_term,
                            categories=all_categories)
+                           
+@app.route('/update_term/<term_id>', methods=['POST'])
+def update_term(term_id):
+    terms = mongo.db.terms
+    terms.update( {"_id": ObjectId(term_id)},
+    {   'term_name':request.form.get('term_name'),
+        'category_name':request.form.get('category_name'),
+        'term_definition': request.form.get('term_definition'),
+        'term_origin':request.form.get('term_origin')
+    })
+    return redirect(url_for('get_terms'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
