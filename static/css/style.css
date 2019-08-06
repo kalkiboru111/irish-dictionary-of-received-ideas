@@ -6,4 +6,4 @@
 
 #main-menu {position:absolute; right:0; top : 0;}
 
-.brand-logo {position:absolute; z-index: 9;}
+.brand-logo {position:absolute; z-index: 9; font-size: small;}

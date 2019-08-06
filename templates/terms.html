@@ -19,7 +19,7 @@
             <td>{{term.term_definition}}</td>
             <td>{{term.term_origin}}</td>
             <td><a href="{{url_for('delete_term', term_id=term._id)}}" class="waves-effect waves-light btn btn_small">Passe</a></td>
-            <td><a href="{{url_for('editterm', term_id=term._id)}}" class="waves-effect waves-light btn btn-small">Refine</a></td>
+            <td><a href="{{url_for('edit_term', term_id=term._id)}}" class="waves-effect waves-light btn btn-small">Refine</a></td>
           </tr>
          {% endfor %}
         </tbody>
