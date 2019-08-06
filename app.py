@@ -32,9 +32,13 @@ def insert_term():
 @app.route('/edit_term/<term_id>')
 def edit_term(term_id):
     the_term =  mongo.db.terms.find_one({"_id": ObjectId(term_id)})
-    all_categories =  mongo.db.categories.find()
+#    all_categories =  mongo.db.categories.find()
+    all_categories = []
+   
+    print(mongo.db)
     return render_template('edit_term.html', term=the_term,
                            categories=all_categories)
+                           
                            
 @app.route('/update_term/<term_id>', methods=['POST'])
 def update_term(term_id):
@@ -51,6 +55,11 @@ def update_term(term_id):
 def delete_term(term_id):
     mongo.db.terms.remove({"_id": ObjectId(term_id)})
     return redirect(url_for('get_terms'))
+
+@app.route('/get_categories')
+def get_categories():
+    return render_template("categories.html", 
+    categories=mongo.db.categories.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

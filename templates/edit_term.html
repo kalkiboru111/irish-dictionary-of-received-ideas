@@ -29,18 +29,25 @@
         <div class="input-field col s12">
           <i class="material-icons prefix">poll</i>
           <select id="category" name="category_name">
-            <option value="Select Category"disabled selected>Select Category</option>
+            <option value="Select Category"disabled selected>Select Category</option> 
+           
             {% for cat in categories %}
+            
             {% if cat.category_name == term.category_name %}
             <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
             {% else %}
             <option value="{{cat.category_name}}">{{cat.category_name}}</option>
             {% endif %}
+            
             {% endfor %}
+            
           </select>
           <label>Category</label>
         </div>
       </div>
+      
+      
+      
       <div class="row">
         <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
           <i class="material-icons right">send</i>
