@@ -1,3 +1,9 @@
 /* body {
     background-color: red;
 } */
+
+
+
+#main-menu {position:absolute; right:0; top : 0;}
+
+.brand-logo {position:absolute; z-index: 9;}
