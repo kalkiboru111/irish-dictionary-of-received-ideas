@@ -16,7 +16,7 @@
           <tr>
             <td>{{category.category_name}}</td>
             <td>{{category.category_definition}}</td>
-            <td><a href="" class="waves-effect waves-light btn btn_small">Passe</a></td>
+            <td><a href="{{url_for('delete_category', category_id =category._id)}}" class="waves-effect waves-light btn btn_small">Passe</a></td>
             <td><a href="{{url_for('edit_category', category_id =category._id)}}" class="waves-effect waves-light btn btn-small">Refine</a></td>
           </tr>
          {% endfor %}
