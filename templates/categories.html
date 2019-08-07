@@ -9,7 +9,6 @@
           <tr>
               <th>Category</th>
               <th>Definition</th>
-              <th><a href="{{url_for('add_category')}}" class="waves-effect waves-light btn-large">Add Category</a></th>
           </tr>
         </thead>
         <tbody>
@@ -23,5 +22,8 @@
          {% endfor %}
         </tbody>
     </table>
+</div>
+<div class="row">
+  <a href="{{url_for('add_category')}}" class="waves-effect waves-light btn-large">Add Category</a>
 </div>
 {% endblock %}
