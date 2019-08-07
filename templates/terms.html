@@ -15,7 +15,7 @@
         {% for term in terms %}
           <tr>
             <td>{{term.term_name}}</td>
-            <td>{{term.term_category}}</td>
+            <td>{{term.category_name}}</td>
             <td>{{term.term_definition}}</td>
             <td>{{term.term_origin}}</td>
             <td><a href="{{url_for('delete_term', term_id=term._id)}}" class="waves-effect waves-light btn btn_small">Passe</a></td>
