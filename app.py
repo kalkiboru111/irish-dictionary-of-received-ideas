@@ -32,8 +32,8 @@ def insert_term():
 @app.route('/edit_term/<term_id>')
 def edit_term(term_id):
     the_term =  mongo.db.terms.find_one({"_id": ObjectId(term_id)})
-#    all_categories =  mongo.db.categories.find()
-    all_categories = []
+    all_categories =  mongo.db.categories.find()
+   
    
     print(mongo.db)
     return render_template('edit_term.html', term=the_term,
