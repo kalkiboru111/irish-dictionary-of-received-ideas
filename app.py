@@ -17,6 +17,7 @@ mongo = PyMongo(app)
 def get_terms():
     return render_template("terms.html", 
     terms=mongo.db.terms.find())
+    
 
 @app.route('/add_term')
 def add_term():
@@ -89,6 +90,13 @@ def insert_category():
 @app.route('/add_category')
 def add_category():
     return render_template('addcategory.html')
+
+@app.route('/search')
+def search():
+    """Route for search bar"""
+    term_name = request.form.get('term_name')
+    results = mongo.db.recipe.find({'$text': {'$search': term_name }})
+    return render_template('search.html', results=results)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
