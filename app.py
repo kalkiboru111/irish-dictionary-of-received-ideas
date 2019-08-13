@@ -92,10 +92,8 @@ def add_category():
     return render_template('addcategory.html')
 
 @app.route('/search')
-def search():
-    """Route for search bar"""
-    term_name = request.form.get('term_name')
-    results = mongo.db.recipe.find({'$text': {'$search': term_name }})
+def search(search_text):
+    results = mongo.db.terms.find({'definition':{'$regex':'.*' + search_text + '.*'}})
     return render_template('search.html', results=results)
 
 if __name__ == '__main__':
