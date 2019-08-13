@@ -15,9 +15,9 @@
                 <ul>
                     <li><a href="{{url_for('get_terms')}}" class="brand-logo center">Irish Dictionary of Received Ideas</a></li>
                 </ul>
-                <form action="/search" method="GET" class= search_box>
+                <form action="search/<search_text>" method="GET" class="search_box">
                     <div class="input-field">
-                        <input id="search" name="search" class="autocomplete" type="search" required>
+                        <input id="search_text" name="search_text" class="autocomplete" type="search" required>
                         <label for="search"><i class="material-icons">search</i></label>
                         <i class="material-icons icon-close">close</i>
                     </div>
