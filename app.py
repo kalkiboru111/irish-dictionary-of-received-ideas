@@ -91,7 +91,7 @@ def insert_category():
 def add_category():
     return render_template('addcategory.html')
 
-@app.route('/search')
+@app.route('/search/<search_text>')
 def search(search_text):
     results = mongo.db.terms.find({'definition':{'$regex':'.*' + search_text + '.*'}})
     return render_template('search.html', results=results)
