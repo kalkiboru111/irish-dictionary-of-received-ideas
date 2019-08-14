@@ -93,14 +93,13 @@ def add_category():
     
 @app.route('/search/<search_text>')
 def search(search_text):
-    term_name = mongo.db.terms.find_one({"term_name": search_text})
-    term_definition = mongo.db.terms.find_one({"term_definition": search_text})
-    all_categories =  mongo.db.categories.find()
-    mongo.db.terms.createIndex( {term_name: "text", term_definition: "text" } )
+    term_name = mongo.db.terms.find({"term_name": search_text})
+    term_definition = mongo.db.terms.find({"term_definition": search_text})
+    all_categories =  mongo.db.categories.find({"category_name": search_text})
     results = mongo.db.terms.find(
         { "$text": { "$search": search_text } } )
-    return render_template( "search.html", term=term_name, term_definition=term_definition,
-                           categories=all_categories)
+    mongo.db.terms.create_index([term_name, term_definition])
+    return render_template( "search.html", term=term_name, term_definition=term_definition)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
