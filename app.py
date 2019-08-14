@@ -34,8 +34,6 @@ def insert_term():
 def edit_term(term_id):
     the_term =  mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     all_categories =  mongo.db.categories.find()
-   
-   
     print(mongo.db)
     return render_template('edit_term.html', term=the_term,
                            categories=all_categories)
@@ -99,7 +97,9 @@ def search(search_text):
     mongo.db.terms.create_index([('term_name', 'text'),('term_definition', 'text')])
     results = mongo.db.terms.find(
         { "$text": { "$search": search_text } } )
-    return render_template( "search.html", term=term_name, term_definition=term_definition, results=results)
+    print(results)
+    return render_template( "search.html", terms=results, term_name=term_name, term_definition=term_definition)
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

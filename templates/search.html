@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+<h3>Search Results</h3>
 {% for i in terms %} 
 
 {{ i.term_name }} 
+{{ i.term_definition }} 
+{{ i.term_category }} 
+{{ i.results}}
 
 {% endfor %}
 
