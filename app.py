@@ -95,11 +95,11 @@ def add_category():
 def search(search_text):
     term_name = mongo.db.terms.find({"term_name": search_text})
     term_definition = mongo.db.terms.find({"term_definition": search_text})
-    all_categories =  mongo.db.categories.find({"category_name": search_text})
+    category_name =  mongo.db.categories.find({"category_name": search_text})
+    mongo.db.terms.create_index([('term_name', 'text'),('term_definition', 'text')])
     results = mongo.db.terms.find(
         { "$text": { "$search": search_text } } )
-    mongo.db.terms.create_index([term_name, term_definition])
-    return render_template( "search.html", term=term_name, term_definition=term_definition)
+    return render_template( "search.html", term=term_name, term_definition=term_definition, results=results)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
