@@ -89,17 +89,11 @@ def insert_category():
 def add_category():
     return render_template('addcategory.html')
     
-@app.route('/search/<search_text>')
-def search(search_text):
-    term_name = mongo.db.terms.find({"term_name": search_text})
-    term_definition = mongo.db.terms.find({"term_definition": search_text})
-    category_name =  mongo.db.categories.find({"category_name": search_text})
-    mongo.db.terms.create_index([('term_name', 'text'),('term_definition', 'text')])
-    results = mongo.db.terms.find(
-        { "$text": { "$search": search_text } } )
-    print(results)
-    return render_template( "search.html", terms=results, term_name=term_name, term_definition=term_definition)
-
+@app.route('/search', methods=['POST'])
+def search():
+    query = request.form.get('query')
+    results = mongo.db.terms.find({ "$text": { "$search": query } } )
+    return render_template( "search.html", terms=results)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
