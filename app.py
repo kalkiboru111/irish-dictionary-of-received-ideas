@@ -12,13 +12,13 @@ mongo = PyMongo(app)
 
 @app.route('/')
 
-# View directs user to terms page
+# Home - displays dictionary.
 @app.route('/get_terms')
 def get_terms():
     return render_template("terms.html", 
     terms=mongo.db.terms.find())
     
-
+# Add Term - provides users with form to add terms.
 @app.route('/add_term')
 def add_term():
     return render_template("add_term.html", 
@@ -29,7 +29,8 @@ def insert_term():
     terms = mongo.db.terms
     terms.insert_one(request.form.to_dict())
     return redirect(url_for('get_terms'))
-    
+
+# Edit Term - provides users with form to edit terms.
 @app.route('/edit_term/<term_id>')
 def edit_term(term_id):
     the_term =  mongo.db.terms.find_one({"_id": ObjectId(term_id)})
@@ -50,16 +51,19 @@ def update_term(term_id):
     })
     return redirect(url_for('get_terms'))
 
+# Delete Term - provides users with means to delete terms.
 @app.route('/delete_term/<term_id>')
 def delete_term(term_id):
     mongo.db.terms.remove({"_id": ObjectId(term_id)})
     return redirect(url_for('get_terms'))
 
+# Categories - displays all categories.
 @app.route('/get_categories')
 def get_categories():
     return render_template("categories.html", 
     categories=mongo.db.categories.find())
-    
+
+# Edit Category - provides users with means to edit categories.
 @app.route('/edit_category/<category_id>')
 def edit_category(category_id):
     return render_template('editcategory.html',
@@ -73,6 +77,7 @@ def update_category(category_id):
         {'category_name': request.form.get('category_name')})
     return redirect(url_for('get_categories'))
 
+# Delete Category - provides users with means to delete category.
 @app.route('/delete__category/<category_id>')
 def delete_category(category_id):
     mongo.db.categories.remove(
@@ -85,16 +90,18 @@ def insert_category():
     mongo.db.categories.insert_one(category_doc)
     return redirect(url_for('get_categories'))
 
+#Add Category - provides users with means to add categories. 
 @app.route('/add_category')
 def add_category():
     return render_template('addcategory.html')
-    
+
+#Search - provides users with means to text search through terms, categories and definitions.  
 @app.route('/search', methods=['POST'])
 def search():
     query = request.form.get('query')
     results = mongo.db.terms.find({ "$text": { "$search": query } } )
     return render_template( "search.html", results=results, query=query)
-
+    
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
