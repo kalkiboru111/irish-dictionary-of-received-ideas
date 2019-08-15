@@ -48,6 +48,13 @@
             });
         });
     </script>
+    <script type="text/javascript" src="{{url_for('static', filename='hilitor.js')}}"></script>
+    <script>
+        
+        var myHilitor = new Hilitor();
+        myHilitor.apply("{{query}}");
+        
+    </script>
 
 </body>
 
