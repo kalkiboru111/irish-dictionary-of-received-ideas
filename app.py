@@ -93,7 +93,7 @@ def add_category():
 def search():
     query = request.form.get('query')
     results = mongo.db.terms.find({ "$text": { "$search": query } } )
-    return render_template( "search.html", terms=results, query=query)
+    return render_template( "search.html", results=results, query=query)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

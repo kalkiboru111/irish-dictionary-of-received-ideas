@@ -1,14 +1,26 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h3>Search Results</h3>
-{% for i in terms %} 
 
-{{ i.term_name }} 
-{{ i.term_definition }} 
-{{ i.term_category }} 
-{{ i.results}}
-
-{% endfor %}
+<table class="highlight centered responsive-table">
+    <thead>
+        <tr>
+            <th>Term, Phrase or Idea</th>
+            <th>Category</th>
+            <th>Definition</th>
+            <th>Origin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for term in results %}
+        <tr>
+            <td>{{term.term_name}}</td>
+            <td>{{term.category_name}}</td>
+            <td>{{term.term_definition}}</td>
+            <td>{{term.term_origin}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}
