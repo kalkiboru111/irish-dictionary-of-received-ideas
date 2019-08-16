@@ -18,8 +18,6 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
-
-
 class RegisterForm(FlaskForm):
     email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
@@ -92,7 +90,6 @@ def insert_term():
 def edit_term(term_id):
     the_term =  mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     all_categories =  mongo.db.categories.find()
-    print(mongo.db)
     return render_template('edit_term.html', term=the_term,
                            categories=all_categories)
                            
@@ -109,9 +106,23 @@ def update_term(term_id):
     return redirect(url_for('get_terms'))
 
 #Vote functionality  
-@app.route('/vote')
-def vote():
-    return render_template('vote.html')
+@app.route('/vote/<term_id>')
+def vote(term_id):
+    the_term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
+    return render_template('vote.html', the_term=the_term)
+
+@app.route('/update_votes/<term_id>', methods=['POST'])
+def update_votes(term_id):
+    terms = mongo.db.terms
+    totalVotes = mongo.db.terms.totalVotes()
+    terms.update( {"_id": ObjectId(term_id)},
+    {   'term_name':request.form.get('term_name'),
+        'category_name':request.form.get('category_name'),
+        'term_definition': request.form.get('term_definition'),
+        'term_origin':request.form.get('term_origin'),
+        'totalVotes': request.form.get('totalVotes')
+    })
+    return redirect(url_for('get_terms'), totalVotes=totalVotes)
 
 # Delete Term - provides users with means to delete terms.
 @app.route('/delete_term/<term_id>')
