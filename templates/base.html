@@ -19,7 +19,7 @@
 <body>
     <header>
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper" id="navigation_bar">
                 <ul>
                     <li><a href="{{url_for('get_terms')}}" class="brand-logo center">Irish Dictionary of Received Ideas</a></li>
                 </ul>
@@ -64,12 +64,14 @@
     </script>
        
      <!-- hilitor highlights search queries on results page -->
-    
     <script type="text/javascript" src="{{url_for('static', filename='hilitor.js')}}"></script>
     <script>
         var myHilitor = new Hilitor();
         myHilitor.apply("{{query}}");
     </script>
+    <!-- JS script for voting functionality -->
+    <script type="text/javascript" src="{{url_for('static', filename='vote.js')}}"></script>
+    
 
 </body>
 

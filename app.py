@@ -1,16 +1,73 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
-from flask_pymongo import PyMongo
+from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask_pymongo import PyMongo, DESCENDING
+from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import InputRequired, Email, Length 
 from bson.objectid import ObjectId
+import re
+import os
+import bcrypt
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'Thisissecret!'
 
 app.config['MONGO_DBNAME'] = 'irish_dictionary'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
+
+
+class RegisterForm(FlaskForm):
+    email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+
+class LoginForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+    remember = BooleanField('remember me')
+
+#User Registration Form - taken from Pretty Printed github
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'name' : request.form['username']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name' : request.form['username'], 'password' : hashpass})
+            session['username'] = request.form['username']
+            return redirect(url_for('register'))
+        
+        flash('That username already exists! Please choose another')
+
+    return render_template('register.html')
+
+#Login Form - taken from Pretty Printed github
 @app.route('/')
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        users =mongo.db.users
+        login_user = users.find_one({'name' : request.form['username']})
+        
+        if login_user:
+            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password']) == login_user['password']:
+                session['username'] = request.form['username']
+                return redirect(url_for('get_terms'))
+            flash('Invalid username/password combination')
+    return render_template('login.html')
+    
+#Logout
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
 
 # Home - displays dictionary.
 @app.route('/get_terms')
@@ -50,6 +107,11 @@ def update_term(term_id):
         'term_origin':request.form.get('term_origin')
     })
     return redirect(url_for('get_terms'))
+
+#Vote functionality  
+@app.route('/vote')
+def vote():
+    return render_template('vote.html')
 
 # Delete Term - provides users with means to delete terms.
 @app.route('/delete_term/<term_id>')
