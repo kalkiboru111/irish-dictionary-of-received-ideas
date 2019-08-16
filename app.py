@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Thisissecret!'
 
 app.config['MONGO_DBNAME'] = 'irish_dictionary'
-app.config["MONGO_URI"] = "mongodb+srv://root:83ZQythXiDEUTHCq@myfirstcluster-qstcj.mongodb.net/test?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
