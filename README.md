@@ -11,12 +11,8 @@ NOTE: I am in the process of adding additional functionality, such as user login
 due to the fact that it is not considered as part of the assessment criteria. 
  
 ## UX
- 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
-In accordance with the goal of providing social commentary, the UX of this project focuses on providing the user with salient content. The homepage therefore directs users directly to the dictionary, omitting 
-any intermediary preabmble. Given that the purpose of the site is fairly self-explanatory, explanatory text is kept to a minimum. 
 
-The purpose of this application is the content. The dictionary is therefore given pride of place on the homepage, and is given a great deal of "real estate". 
+The purpose of this application is the content. The homepage therefore directs users directly to the dictionary, omitting any preabmble. The dictionary is therefore given pride of place on the homepage, and is given a great deal of "real estate".
 
 Likewise, the search icon is placed in the top-left hand corner of the navbar and the navbar is available on every page of the application, except for the preliminary 
 login and registration pages. The consistent presence of the nav bar with search icon allows users to readily search for any term, regardless of where they are in the application. This minimizes friction for users seeking to search for and post content.
