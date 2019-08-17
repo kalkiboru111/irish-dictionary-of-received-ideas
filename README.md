@@ -6,6 +6,9 @@ their accuracy and/or social salience, and a means to refine and update the term
 
 This serves the purposes of alerting users to the latest truisms being peddled by politicians, pundits, and talking heads; of providing social commentary; and also
 just provides entertainment value. 
+
+NOTE: I am in the process of adding additional functionality, such as user login and voting fucntionality. However, I have commented this functionality out for the time being, 
+due to the fact that it is not considered as part of the assessment criteria. 
  
 ## UX
  
