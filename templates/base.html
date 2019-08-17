@@ -2,17 +2,17 @@
 <html>
 
 <head>
-    
+
     <!--Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
-     <!--Materialise CSS-->
+
+    <!--Materialise CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    
-     <!--Custom CSS stylesheet-->
+
+    <!--Custom CSS stylesheet-->
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
-    
-     <!--Font Awesome-->
+
+    <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/845efe5847.js"></script>
 </head>
 
@@ -41,13 +41,13 @@
     <div class="container">
         {% block content %} {% endblock %}
     </div>
-    
+
     <!--jQuery before materialize.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
     <!--Materialize JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    
+
     <!--jQuery-->
     <script type="text/javascript">
         $(document).ready(function() {
@@ -62,17 +62,14 @@
             });
         });
     </script>
-       
-     <!-- hilitor highlights search queries on results page -->
+
+    <!-- hilitor highlights search queries on results page -->
     <script type="text/javascript" src="{{url_for('static', filename='hilitor.js')}}"></script>
     <script>
         var myHilitor = new Hilitor();
         myHilitor.apply("{{query}}");
     </script>
-    <!-- JS script for voting functionality -->
-    <script type="text/javascript" src="{{url_for('static', filename='vote.js')}}"></script>
     
-
 </body>
 
 </html>
