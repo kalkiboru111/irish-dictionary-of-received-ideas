@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for, session, f
 from flask_pymongo import PyMongo, DESCENDING
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from flask_sqlalchemy import SQLAlchemy
+
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
