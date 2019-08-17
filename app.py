@@ -5,7 +5,8 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length 
-from flask_login import login_required, current_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 import re
 import os
@@ -18,6 +19,19 @@ app.config['MONGO_DBNAME'] = 'irish_dictionary'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
+class User(UserMixin, mongo.db.Model):
+    id = mongo.db.Column(mongo.db.Integer, primary_key=True)
+    username = mongo.db.Column(mongo.db.String(15), unique=True)
+    email = mongo.db.Column(mongo.db.String(50), unique=True)
+    password = mongo.db.Column(mongo.db.String(80))
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 class RegisterForm(FlaskForm):
     email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
