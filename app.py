@@ -170,40 +170,39 @@ def delete_term(term_id):
 @app.route('/categories')
 #@login_required
 def categories():
-    return render_template("categories.html", categories=mongo.db.terms.find())
+    return render_template("categories.html", categories=mongo.db.categories.find())
 
 # # Edit Category - provides users with means to edit categories.
-# @app.route('/edit_category/<category_id>')
-# #@login_required
-# def edit_category(category_id):
-#     return render_template('editcategory.html',
-#     category=mongo.db.categories.find_one(
-#     {'_id': ObjectId(category_id)}))
+@app.route('/edit_category/<category_id>')
+#@login_required
+def edit_category(category_id):
+    return render_template('editcategory.html',
+    category=mongo.db.categories.find_one(
+    {'_id': ObjectId(category_id)}))
 
-# @app.route('/update_category/<category_id>', methods=['POST'])
-# #@login_required
-# def update_category(category_id):
-#     mongo.db.categories.update(
-#         {'_id': ObjectId(category_id)},
-#         {'category_name': request.form.get('category_name')})
-#     return render_template("categories.html")
+@app.route('/update_category/<category_id>', methods=['POST'])
+#@login_required
+def update_category(category_id):
+    mongo.db.categories.update(
+        {'_id': ObjectId(category_id)},
+        {'category_name': request.form.get('category_name')})
+    return render_template("categories.html")
 
-
-
-# #Delete Category - provides users with means to delete category.
-# @app.route('/delete_category/<category_id>')
-# #@login_required
-# def delete_category(category_id):
-#     mongo.db.categories.remove(
-#         {'_id': ObjectId(category_id)})
-#     return render_template("categories.html")
+#Delete Category - provides users with means to delete category.
+@app.route('/delete_category/<category_id>')
+#@login_required
+def delete_category(category_id):
+    mongo.db.terms.remove({"_id": ObjectId(category_id)})
+    mongo.db.categories.remove(
+        {'_id': ObjectId(category_id)})
+    return render_template("categories.html")
    
-# @app.route('/insert_category', methods=['POST'])
-# #@login_required
-# def insert_category():
-#     category_doc = {'category_name': request.form.get('category_name')},
-#     mongo.db.categories.insert_one(category_doc)
-#     return render_template("categories.html")
+@app.route('/insert_category', methods=['POST'])
+#@login_required
+def insert_category():
+    category_doc = {'category_name': request.form.get('category_name')},
+    mongo.db.categories.insert_one(category_doc)
+    return render_template("categories.html")
 
 #Add Category - provides users with means to add categories. 
 @app.route('/add_category')
