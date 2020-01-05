@@ -180,7 +180,7 @@ def edit_category(category_id):
     category=mongo.db.categories.find_one(
     {'_id': ObjectId(category_id)}))
 
-@app.route('/update_category/<category_id>', methods=['POST'])
+@app.route('/update_category/<category_id>')
 #@login_required
 def update_category(category_id):
     mongo.db.categories.update(
@@ -193,7 +193,7 @@ def update_category(category_id):
 #@login_required
 def delete_category(category_id):
     mongo.db.categories.remove({"_id": ObjectId(category_id)})
-    return redirect(url_for('categories.html'))
+    return redirect(url_for('categories'))
    
 @app.route('/insert_category', methods=['POST'])
 #@login_required
