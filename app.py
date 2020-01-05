@@ -176,9 +176,9 @@ def categories():
 @app.route('/edit_category/<category_id>')
 #@login_required
 def edit_category(category_id):
+    the_category =  mongo.db.terms.find_one({"_id": ObjectId(category_id)})
     return render_template('editcategory.html',
-    category=mongo.db.categories.find_one(
-    {'_id': ObjectId(category_id)}))
+    category=the_category)
 
 @app.route('/update_category/<category_id>')
 #@login_required
