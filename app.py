@@ -198,9 +198,10 @@ def delete_category(category_id):
 @app.route('/insert_category', methods=['POST'])
 #@login_required
 def insert_category():
-    category_doc = {'category_name': request.form.get('category_name')},
-    mongo.db.categories.insert_one(category_doc)
-    return render_template("categories.html")
+    categories = mongo.db.categories
+    categories.insert_one((request.form.to_dict()))
+    return redirect(url_for('categories'))
+
 
 #Add Category - provides users with means to add categories. 
 @app.route('/add_category')
