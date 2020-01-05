@@ -192,10 +192,8 @@ def update_category(category_id):
 @app.route('/delete_category/<category_id>')
 #@login_required
 def delete_category(category_id):
-    mongo.db.terms.remove({"_id": ObjectId(category_id)})
-    mongo.db.categories.remove(
-        {'_id': ObjectId(category_id)})
-    return render_template("categories.html")
+    mongo.db.categories.remove({"_id": ObjectId(category_id)})
+    return redirect(url_for('categories.html'))
    
 @app.route('/insert_category', methods=['POST'])
 #@login_required
@@ -208,7 +206,8 @@ def insert_category():
 @app.route('/add_category')
 #@login_required
 def add_category():
-    return render_template('addcategory.html')
+    return render_template("addcategory.html", 
+    categories=mongo.db.categories.find())
 
 #Search - provides users with means to text search through terms, categories and definitions.  
 @app.route('/search', methods=['POST'])
