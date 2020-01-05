@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {% block content %}
+
+<h3>Edit Term</h3>
+<div class="container">
+  
+<!-- Term Field populated with term selected for editing. -->
+  <div class="row">
+    <form action="{{ url_for('update_term', term_id=term._id)  }}" method='POST' class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="term_name" name="term_name" type="text" class="materialize-textarea" data-length="15">{{term.term_name}}</textarea>
+          <label for="term_name">Input Term, Phrase or Idea</label>
+        </div>
+      </div>
+  
+<!-- Definition Field populated with term selected for editing. -->
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="term_definition" name="term_definition" class="materialize-textarea" data-length="120">{{term.term_definition}}</textarea>
+          <label for="term_definition">Input Definition</label>
+        </div>
+      </div>
+
+<!-- Origin Field populated with etymology of term selected for editing. -->
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="term_origin" name="term_origin" class="materialize-textarea" data-length="120">{{term.term_origin}}</textarea>
+          <label for="term_origin">Input Origin or Etymology</label>
+        </div>
+      </div>
+
+<!-- Category Field populated with category of term selected for editing. -->
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">poll</i>
+          <select id="category" name="category_name">
+                  <option value="" disabled selected> Choose Category </option>
+                  {% for cat in categories %}
+                  
+                  {% if cat.category_name == term.category_name %}
+                      <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
+                  {% else %}
+                  <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                  {% endif %}
+                  
+                  {% endfor %}
+          </select>
+        </div>
+      </div>
+<!-- Submit button. -->
+      <div class="row">
+        <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
