@@ -181,7 +181,7 @@ def edit_category(category_id):
     return render_template('editcategory.html',
     category=the_category)
 
-@app.route('/update_category/<category_id>')
+@app.route('/update_category/<category_id>', methods=['POST'])
 #@login_required
 def update_category(category_id):
     categories = mongo.db.categories
@@ -218,7 +218,8 @@ def add_category():
 def search():
     query = request.form.get('query')
     results = mongo.db.terms.find({ "$text": { "$search": query } } )
-    return render_template( "search.html", results=results, query=query)
+    category_results = mongo.db.categories.find({ "$text": { "$search": query } } )
+    return render_template( "search.html", results=results, category_results=category_results, query=query)
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
