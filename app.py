@@ -183,10 +183,12 @@ def edit_category(category_id):
 @app.route('/update_category/<category_id>')
 #@login_required
 def update_category(category_id):
-    mongo.db.categories.update(
-        {'_id': ObjectId(category_id)},
-        {'category_name': request.form.get('category_name')})
-    return render_template("categories.html")
+    categories = mongo.db.categories
+    categories.update( {"_id": ObjectId(category_id)},
+    {   'category_name':request.form.get('category_name'),
+        'category_definition': request.form.get('category_definition'),
+    })
+    return redirect(url_for('categories'))
 
 #Delete Category - provides users with means to delete category.
 @app.route('/delete_category/<category_id>')

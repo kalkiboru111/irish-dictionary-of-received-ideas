@@ -4,21 +4,20 @@
 <h3>Edit Category</h3>
 
 <!-- Category Field populated with category selected for editing. -->
-<div class="row">
-    <form action="{{ url_for('update_category', category_id=category._id) }}" method="POST" class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">poll</i>
-                <input id="category_name" name="category_name" type="text" class="validate" value="{{category.category_name}}">
-                <label for="category_name">Category Name</label>
-            </div>
+  <div class="row">
+    <form action="{{ url_for('update_category', category_id=category._id)  }}" method='POST' class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="category_name" name="category_name" type="text" class="materialize-textarea" data-length="15">{{category.category_name}}</textarea>
+          <label for="category_name">Input Term, Phrase or Idea</label>
         </div>
-        
+      </div>
+
 <!-- Category Field populated with definition of category selected for editing. -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">poll</i>
-                <input id="category_definition" name="category_definition" type="text" class="validate" value="{{category.category_definition}}">
+                <textarea id="category_definition" name="category_definition" type="text" class="materialize-textarea" data-length="15">{{category.category_definition}}</textarea>
                 <label for="category_definition">Category Definition</label>
             </div>
         </div>
