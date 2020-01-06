@@ -4,15 +4,13 @@ This is a dictionary of the latest and greatest Irish platitudes. It is modeled 
 a short satirical work collected and published in 1911. It provides users with definitions of the latest cliches, a means to upvote and downvote them based on 
 their accuracy and/or social salience, and a means to refine and update the terms and definitions as necessary. 
 
-This serves the purposes of alerting users to the latest truisms being peddled by politicians, pundits, and talking heads; of providing social commentary; and also
-just provides entertainment value. 
+This serves the purposes of alerting users to the latest truisms being peddled by politicians, pundits, and talking heads; of providing social commentary; and also just provides entertainment value. 
 
 NOTE: I am in the process of adding additional functionality, such as user login and voting fucntionality. However, I have commented this functionality out for the time being, 
 due to the fact that it is not considered as part of the assessment criteria. 
  
 ## UX
  
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
 In accordance with the goal of providing social commentary, the UX of this project focuses on providing the user with salient content. The homepage therefore directs users directly to the dictionary, omitting 
 any intermediary preabmble. Given that the purpose of the site is fairly self-explanatory, explanatory text is kept to a minimum. 
 
